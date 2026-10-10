@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kingly — Private Wealth, Plainly Seen</title>
+  <meta name="description" content="Kingly is a private, on-device investment and finance journal for self-directed investors. Track net worth, holdings, budgets and transactions in one calm, local-only app." />
+  <meta name="theme-color" content="#0F1729" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23F4C430'/><text x='50%25' y='56%25' text-anchor='middle' font-family='-apple-system,BlinkMacSystemFont,sans-serif' font-size='38' font-weight='800' fill='%230F1729'>K</text></svg>" />
+  <style>
+    :root {
+      --bg: #0F1729;
+      --bg-2: #171E32;
+      --card: #1E2638;
+      --divider: #2A3147;
+      --text: #F1F5F8;
+      --text-2: #A6B0C2;
+      --text-3: #6B7589;
+      --accent: #F4C430;
+      --accent-muted: rgba(244, 196, 48, 0.18);
+      --positive: #4DD8A3;
+      --negative: #F77070;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    header.nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); background: rgba(15, 23, 41, 0.78); border-bottom: 1px solid var(--divider); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; max-width: 1080px; margin: 0 auto; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -0.01em; }
+    .brand-mark { width: 28px; height: 28px; border-radius: 7px; background: var(--accent); color: var(--bg); display: grid; place-items: center; font-weight: 800; font-size: 17px; }
+    nav ul { display: flex; gap: 22px; list-style: none; }
+    nav ul a { color: var(--text-2); font-size: 14px; font-weight: 500; }
+    nav ul a:hover { color: var(--text); text-decoration: none; }
+    .cta { background: var(--accent); color: var(--bg); padding: 9px 18px; border-radius: 999px; font-weight: 700; font-size: 14px; }
+    .cta:hover { text-decoration: none; opacity: 0.92; }
+    @media (max-width: 720px) { nav ul { display: none; } }
+
+    /* Hero */
+    .hero { padding: 96px 0 80px; text-align: center; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: var(--accent-muted); color: var(--accent); font-size: 13px; font-weight: 600; margin-bottom: 24px; }
+    .pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .hero h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 800; line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 18px; }
+    .hero h1 .accent { color: var(--accent); }
+    .hero p.lead { font-size: clamp(17px, 1.8vw, 20px); color: var(--text-2); max-width: 640px; margin: 0 auto 36px; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 12px; font-weight: 700; font-size: 15px; transition: transform 0.1s ease; }
+    .btn:hover { text-decoration: none; transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--divider); }
+    .hero-mock { margin: 64px auto 0; max-width: 360px; }
+    .phone { background: linear-gradient(180deg, #20283A 0%, #161D2E 100%); border-radius: 38px; padding: 14px; border: 1px solid #2E364C; box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04) inset; }
+    .phone-screen { background: var(--bg); border-radius: 28px; padding: 24px 18px; min-height: 540px; }
+    .phone-bar { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-3); margin-bottom: 18px; padding: 0 4px; }
+    .phone-title { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
+    .phone-sub { font-size: 13px; color: var(--text-3); margin-bottom: 18px; }
+    .phone-card { background: var(--card); border-radius: 18px; padding: 18px; margin-bottom: 12px; }
+    .phone-label { font-size: 12px; color: var(--text-3); margin-bottom: 6px; }
+    .phone-amount { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; }
+    .phone-change { font-size: 13px; color: var(--negative); margin-top: 4px; }
+    .phone-spark { height: 64px; background: linear-gradient(180deg, transparent 0%, var(--accent-muted) 100%); border-radius: 10px; margin-top: 14px; position: relative; overflow: hidden; }
+    .phone-spark::after { content: ""; position: absolute; bottom: 12px; left: 12px; right: 12px; height: 2px; background: var(--accent); clip-path: polygon(0 60%, 12% 50%, 24% 65%, 36% 40%, 48% 55%, 60% 30%, 72% 45%, 84% 25%, 100% 40%, 100% 100%, 0 100%); }
+
+    /* Section common */
+    section { padding: 80px 0; border-top: 1px solid var(--divider); }
+    .section-head { text-align: center; max-width: 680px; margin: 0 auto 56px; }
+    .eyebrow { color: var(--accent); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; display: block; }
+    .section-head h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .section-head p { color: var(--text-2); font-size: 17px; }
+
+    /* Features */
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .feature { background: var(--bg-2); border: 1px solid var(--divider); border-radius: 18px; padding: 28px; transition: border-color 0.15s ease, transform 0.15s ease; }
+    .feature:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .feature-icon { width: 44px; height: 44px; border-radius: 11px; background: var(--accent-muted); color: var(--accent); display: grid; place-items: center; margin-bottom: 18px; font-size: 22px; }
+    .feature h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .feature p { color: var(--text-2); font-size: 14.5px; }
+
+    /* Pillars */
+    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
+    .pillar { text-align: left; }
+    .pillar .num { font-size: 36px; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; margin-bottom: 6px; }
+    .pillar h3 { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+    .pillar p { color: var(--text-2); font-size: 14.5px; }
+
+    /* Privacy callout */
+    .privacy-callout { background: linear-gradient(135deg, var(--bg-2) 0%, var(--card) 100%); border: 1px solid var(--divider); border-radius: 24px; padding: 48px; text-align: center; }
+    .privacy-callout h2 { font-size: clamp(26px, 3.5vw, 36px); font-weight: 800; margin-bottom: 14px; letter-spacing: -0.02em; }
+    .privacy-callout p { color: var(--text-2); max-width: 620px; margin: 0 auto 24px; font-size: 16px; }
+    .privacy-bullets { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; margin-bottom: 28px; }
+    .privacy-bullets span { display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 14px; font-weight: 500; }
+    .privacy-bullets span::before { content: "✓"; color: var(--positive); font-weight: 800; }
+
+    /* FAQ */
+    .faq { max-width: 760px; margin: 0 auto; }
+    details { background: var(--bg-2); border: 1px solid var(--divider); border-radius: 14px; margin-bottom: 12px; padding: 4px 22px; }
+    details[open] { border-color: var(--accent); }
+    summary { cursor: pointer; padding: 18px 0; font-weight: 600; font-size: 16px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::after { content: "+"; color: var(--accent); font-size: 22px; font-weight: 400; transition: transform 0.2s; }
+    details[open] summary::after { content: "−"; }
+    summary::-webkit-details-marker { display: none; }
+    details > p { color: var(--text-2); padding-bottom: 18px; font-size: 14.5px; }
+
+    /* CTA */
+    .cta-section { text-align: center; padding: 80px 24px; background: radial-gradient(ellipse at top, rgba(244, 196, 48, 0.08), transparent 60%); }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; margin-bottom: 14px; letter-spacing: -0.02em; }
+    .cta-section p { color: var(--text-2); margin-bottom: 28px; font-size: 17px; }
+
+    footer { border-top: 1px solid var(--divider); padding: 40px 0; color: var(--text-3); font-size: 13.5px; }
+    .footer-inner { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--text-2); }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="Kingly home">
+        <span class="brand-mark">K</span>
+        <span>Kingly</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#privacy">Privacy</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
+      <a href="https://apps.apple.com" class="cta">Download on App Store</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <span class="pill">Private · On-device · iPhone</span>
+        <h1>Your wealth, <span class="accent">plainly seen.</span></h1>
+        <p class="lead">Kingly is a private, on-device investment and finance journal for self-directed investors. One calm, opinionated interface for every account, position, budget and transaction — designed to be opened every morning, not hidden behind a login.</p>
+        <div class="hero-actions">
+          <a href="https://apps.apple.com" class="btn btn-primary">Get Kingly for iPhone</a>
+          <a href="#features" class="btn btn-secondary">Explore features</a>
+        </div>
+
+        <div class="hero-mock" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-bar"><span>09:21</span><span>•</span></div>
+              <div class="phone-title">Overview</div>
+              <div class="phone-sub">Your portfolio at a glance</div>
+              <div class="phone-card">
+                <div class="phone-label">Net Worth</div>
+                <div class="phone-amount">US$32,020</div>
+                <div class="phone-change">−US$232 (−0.72%) vs. past month</div>
+                <div class="phone-spark"></div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-label">Asset Allocation</div>
+                <div class="phone-amount" style="font-size:18px;color:var(--text-2);">Cash · Crypto · Equities</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Features</span>
+          <h2>Built for the morning coffee.</h2>
+          <p>Every screen, chart and interaction is hand-built in Swift with UIKit and Core Graphics — no third-party chart library, no analytics SDK, no data harvesting.</p>
+        </div>
+        <div class="features">
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">📈</div>
+            <h3>Interactive net worth</h3>
+            <p>A smooth, custom-rendered line chart with a tap-to-inspect crosshair across 7D, 1M, 3M, 1Y and All-time ranges.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">🍩</div>
+            <h3>Asset allocation donut</h3>
+            <p>Full-screen donut rebuilt with Core Graphics breaks down equities, bonds, crypto, real estate and cash at a glance.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">📒</div>
+            <h3>Searchable ledger</h3>
+            <p>Every transaction — income, expense or transfer — searchable, filterable and grouped by day. Add entries in seconds with a visual category grid.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">💼</div>
+            <h3>Serious portfolio</h3>
+            <p>Track holdings across equities, ETFs, bonds, crypto, real estate and alternatives with cost basis, market value and unrealized P/L.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">📊</div>
+            <h3>Reports that matter</h3>
+            <p>Income, spending, net cash flow and category breakdowns as signed bars across weekly, monthly, quarterly and yearly windows.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">📷</div>
+            <h3>Receipt capture</h3>
+            <p>Snap a receipt with the camera or attach one from Photos. The image is stored privately in the app sandbox — never uploaded.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">🎯</div>
+            <h3>Budgets & insights</h3>
+            <p>Set monthly budgets, watch the rings fill, and let the Insights card surface what changed since last period.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">📤</div>
+            <h3>Export any time</h3>
+            <p>One-tap JSON snapshot of your entire envelope — share via Files, AirDrop or email. We never see it.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Privacy</span>
+          <h2>Absolute by default.</h2>
+          <p>Kingly does not collect, transmit or sell any of your data. Everything lives on this device, behind iOS sandbox isolation.</p>
+        </div>
+        <div class="privacy-callout">
+          <h2>Your data never leaves your iPhone.</h2>
+          <p>No accounts, no sign-in, no background tracking, no analytics SDK, no server. The only network permission Kingly may request is for the optional in-app currency rate refresh — and that is opt-in, never automatic.</p>
+          <div class="privacy-bullets">
+            <span>No accounts, no sign-in</span>
+            <span>No background tracking</span>
+            <span>No analytics SDK</span>
+            <span>No data leaves device</span>
+            <span>Camera used only for receipts</span>
+            <span>Open JSON export format</span>
+          </div>
+          <a href="privacy.html" class="btn btn-primary">Read the full privacy policy</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Why Kingly</span>
+          <h2>Designed for investors who value clarity over noise.</h2>
+          <p>The principles that shape every pixel, every chart, and every interaction in Kingly.</p>
+        </div>
+        <div class="pillars">
+          <div class="pillar">
+            <div class="num">01</div>
+            <h3>Local-first</h3>
+            <p>All data is stored on your iPhone in a sandboxed JSON envelope. Deleting the app removes everything — instantly and irreversibly.</p>
+          </div>
+          <div class="pillar">
+            <div class="num">02</div>
+            <h3>Calm, not loud</h3>
+            <p>No pop-ups, no upsells, no streaks, no notifications begging you to open the app. Kingly is a tool, not a feed.</p>
+          </div>
+          <div class="pillar">
+            <div class="num">03</div>
+            <h3>Native to the core</h3>
+            <p>Written in Swift with UIKit and Core Graphics. Every chart, donut, sparkline and gauge is hand-rendered — no third-party charting or analytics libraries.</p>
+          </div>
+          <div class="pillar">
+            <div class="num">04</div>
+            <h3>Yours forever</h3>
+            <p>Open JSON export. No proprietary format. No subscription. No data hostage. The export file is yours to keep, parse, and migrate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">FAQ</span>
+          <h2>Frequently asked questions.</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Does Kingly require an account?</summary>
+            <p>No. Kingly has no sign-in, no account creation and no email verification. Install, open, start typing.</p>
+          </details>
+          <details>
+            <summary>Where is my data stored?</summary>
+            <p>All data lives in a sandboxed JSON file inside the Kingly app container on your iPhone. It is protected by iOS app sandbox isolation and is never transmitted anywhere.</p>
+          </details>
+          <details>
+            <summary>Can I export my data?</summary>
+            <p>Yes. Settings → Data → Export creates a single JSON file containing every account, transaction, holding, budget and theme preference. You can share it via Files, AirDrop, email or any other iOS share target.</p>
+          </details>
+          <details>
+            <summary>Does Kingly support multiple currencies?</summary>
+            <p>Yes. Kingly supports USD, EUR, GBP, JPY, CNY, HKD, SGD, AUD, CAD and CHF as a base currency, configurable in Settings → Preferences → Currency.</p>
+          </details>
+          <details>
+            <summary>What happens if I delete the app?</summary>
+            <p>All data is permanently erased. There is no cloud backup and no recovery. We recommend exporting a JSON snapshot first if you want to migrate or restore later.</p>
+          </details>
+          <details>
+            <summary>Does Kingly support iPad?</summary>
+            <p>Kingly is currently iPhone-only, optimised for iOS 16 and later. An iPad-native layout is on the roadmap.</p>
+          </details>
+          <details>
+            <summary>Is Kingly free?</summary>
+            <p>Kingly is a one-time paid download with no subscriptions, no ads and no in-app purchases.</p>
+          </details>
+          <details>
+            <summary>How do I contact support?</summary>
+            <p>Please email <a href="mailto:dhfu94086@gmail.com">dhfu94086@gmail.com</a>. We typically respond within one business day.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Take control of your financial story.</h2>
+      <p>Built for iPhone. Private by design. Yours forever.</p>
+      <a href="https://apps.apple.com" class="btn btn-primary">Get Kingly on the App Store</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© 2026 Kingly Labs. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="support.html">Support</a>
+        <a href="mailto:dhfu94086@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

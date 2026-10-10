@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Kingly</title>
+  <meta name="description" content="The privacy policy for Kingly, a private on-device wealth journal. Kingly collects no data, transmits nothing, and stores everything locally on your iPhone." />
+  <meta name="theme-color" content="#0F1729" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23F4C430'/><text x='50%25' y='56%25' text-anchor='middle' font-family='-apple-system,BlinkMacSystemFont,sans-serif' font-size='38' font-weight='800' fill='%230F1729'>K</text></svg>" />
+  <style>
+    :root {
+      --bg: #0F1729;
+      --bg-2: #171E32;
+      --card: #1E2638;
+      --divider: #2A3147;
+      --text: #F1F5F8;
+      --text-2: #A6B0C2;
+      --text-3: #6B7589;
+      --accent: #F4C430;
+      --accent-muted: rgba(244, 196, 48, 0.18);
+      --positive: #4DD8A3;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    header.nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); background: rgba(15, 23, 41, 0.85); border-bottom: 1px solid var(--divider); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; max-width: 1080px; margin: 0 auto; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -0.01em; color: var(--text); }
+    .brand-mark { width: 28px; height: 28px; border-radius: 7px; background: var(--accent); color: var(--bg); display: grid; place-items: center; font-weight: 800; font-size: 17px; }
+    nav ul { display: flex; gap: 22px; list-style: none; }
+    nav ul a { color: var(--text-2); font-size: 14px; font-weight: 500; }
+    nav ul a:hover { color: var(--text); text-decoration: none; }
+    @media (max-width: 720px) { nav ul { display: none; } }
+
+    .doc-hero { padding: 64px 0 32px; border-bottom: 1px solid var(--divider); }
+    .doc-hero h1 { font-size: clamp(32px, 4.5vw, 44px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .doc-hero .meta { color: var(--text-3); font-size: 14px; }
+    .doc-hero .meta strong { color: var(--text-2); }
+
+    .highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 28px 0 0; }
+    .hi { background: var(--bg-2); border: 1px solid var(--divider); border-radius: 12px; padding: 16px; }
+    .hi .label { color: var(--text-3); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .hi .val { color: var(--text); font-weight: 700; font-size: 15px; }
+
+    main section { padding: 36px 0; border-bottom: 1px solid var(--divider); }
+    main section:last-of-type { border-bottom: none; }
+    h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 14px; }
+    h3 { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--text); }
+    p { color: var(--text-2); margin-bottom: 12px; font-size: 15px; }
+    ul, ol { color: var(--text-2); margin: 0 0 12px 22px; font-size: 15px; }
+    li { margin-bottom: 6px; }
+    li strong { color: var(--text); }
+    .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--accent-muted); color: var(--accent); font-size: 12px; font-weight: 700; margin-left: 6px; vertical-align: middle; }
+    .callout { background: var(--bg-2); border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: 8px; margin: 16px 0; }
+    .callout p { color: var(--text); margin: 0; font-size: 14.5px; }
+    .toc { background: var(--bg-2); border: 1px solid var(--divider); border-radius: 14px; padding: 20px 24px; margin: 32px 0; }
+    .toc h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin-bottom: 12px; }
+    .toc ol { list-style: none; margin: 0; padding: 0; }
+    .toc li { margin-bottom: 6px; }
+    .toc a { color: var(--text-2); font-size: 14.5px; }
+    .toc a:hover { color: var(--accent); }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; }
+    th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--divider); }
+    th { color: var(--text-3); font-weight: 600; text-transform: uppercase; font-size: 12px; letter-spacing: 0.06em; }
+    td { color: var(--text-2); }
+    td strong { color: var(--text); }
+    footer { border-top: 1px solid var(--divider); padding: 40px 0; color: var(--text-3); font-size: 13.5px; margin-top: 60px; }
+    .footer-inner { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--text-2); }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="Kingly home">
+        <span class="brand-mark">K</span>
+        <span>Kingly</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="index.html#privacy">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="doc-hero">
+      <div class="wrap">
+        <h1>Privacy Policy</h1>
+        <p class="meta"><strong>Kingly Labs</strong> · Effective: October 10, 2026 · Last updated: October 10, 2026</p>
+        <div class="highlights">
+          <div class="hi"><div class="label">Accounts</div><div class="val">None</div></div>
+          <div class="hi"><div class="label">Analytics</div><div class="val">None</div></div>
+          <div class="hi"><div class="label">Servers</div><div class="val">None</div></div>
+          <div class="hi"><div class="label">Data Location</div><div class="val">Your iPhone</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <aside class="toc" aria-label="Table of contents">
+        <h2>Contents</h2>
+        <ol>
+          <li><a href="#summary">Summary in plain English</a></li>
+          <li><a href="#data-collected">Data Kingly Collects</a></li>
+          <li><a href="#data-not-collected">Data Kingly Does <em>Not</em> Collect</a></li>
+          <li><a href="#permissions">iOS Permissions Explained</a></li>
+          <li><a href="#data-storage">Where Your Data Is Stored</a></li>
+          <li><a href="#data-export">Export and Deletion</a></li>
+          <li><a href="#third-parties">Third-Party Services</a></li>
+          <li><a href="#children">Children's Privacy</a></li>
+          <li><a href="#changes">Changes to This Policy</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ol>
+      </aside>
+
+      <section id="summary">
+        <h2>1. Summary in plain English</h2>
+        <div class="callout"><p>Kingly is a private, on-device wealth journal. It does not collect, transmit, sell, share, rent or otherwise process your financial data on any server. All data you enter into Kingly lives only on your iPhone, inside the iOS application sandbox, and is removed permanently when you delete the app.</p></div>
+        <p>This policy is intentionally short and is written in plain English rather than legalese. If anything below is unclear, please write to us at <a href="mailto:dhfu94086@gmail.com">dhfu94086@gmail.com</a> and we will reply.</p>
+      </section>
+
+      <section id="data-collected">
+        <h2>2. Data Kingly Collects</h2>
+        <p>Kingly does not collect any data. <span class="pill">Zero collection</span></p>
+        <p>Specifically, Kingly does not collect, store on a server, or transmit to any third party:</p>
+        <ul>
+          <li>Your name, email address, phone number, or any contact information</li>
+          <li>Account, transaction, holding, or budget data you enter into the app</li>
+          <li>Device identifiers (IDFA, IDFV, advertising ID, MAC address)</li>
+          <li>IP addresses, browser user-agents, or referrers</li>
+          <li>Crash logs, performance telemetry, or session recordings</li>
+          <li>Geolocation, contacts, calendar, or health data</li>
+          <li>Photos unless you explicitly choose to attach one to a transaction</li>
+        </ul>
+      </section>
+
+      <section id="data-not-collected">
+        <h2>3. Data Kingly Does <em>Not</em> Collect</h2>
+        <p>To be explicit about what is <em>absent</em> from Kingly:</p>
+        <ul>
+          <li><strong>No analytics SDK.</strong> Kingly does not integrate Firebase, Amplitude, Mixpanel, Segment, Sentry, Bugsnag, Adjust, Branch, AppsFlyer, or any other analytics or attribution library.</li>
+          <li><strong>No advertising SDK.</strong> Kingly contains no ad networks, no bidding SDKs, and no behavioural tracking.</li>
+          <li><strong>No A/B testing or feature flag service.</strong> All users get the same build.</li>
+          <li><strong>No remote configuration.</strong> There is no server-side config that can change app behaviour after release.</li>
+          <li><strong>No social login SDKs.</strong> No Sign in with Apple, Google or Facebook is required to use Kingly.</li>
+        </ul>
+      </section>
+
+      <section id="permissions">
+        <h2>4. iOS Permissions Explained</h2>
+        <p>Kingly may request the following iOS permissions. Each is opt-in, prompted only when needed, and explained at the moment of request.</p>
+        <table>
+          <thead>
+            <tr><th>Permission</th><th>Purpose</th><th>When requested</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Camera</strong></td>
+              <td>Capture a receipt photo to attach to a transaction. The image is saved inside the Kingly sandbox and is not transmitted.</td>
+              <td>Only when you tap "Add Receipt" → "Take Photo".</td>
+            </tr>
+            <tr>
+              <td><strong>Photo Library (read)</strong></td>
+              <td>Pick an existing receipt photo from your Photos library to attach to a transaction.</td>
+              <td>Only when you tap "Add Receipt" → "Choose from Library".</td>
+            </tr>
+            <tr>
+              <td><strong>Photo Library (write)</strong></td>
+              <td>Save an exported chart image or report to Photos when you explicitly tap "Save to Photos" inside a share sheet.</td>
+              <td>Only at the moment you choose to save.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>You can revoke any of these permissions at any time in iOS Settings → Privacy & Security. Revoking a permission does not delete data already saved inside the Kingly app.</p>
+      </section>
+
+      <section id="data-storage">
+        <h2>5. Where Your Data Is Stored</h2>
+        <p>All Kingly data is stored in a single JSON file inside the iOS application sandbox for the Kingly app on your iPhone. The exact filename is <code>aurum_data.json</code> in the app's Documents directory.</p>
+        <h3>5.1 Sandbox isolation</h3>
+        <p>On iOS, each app runs inside its own encrypted container, isolated from every other app. No other app — including apps from the same developer — can read Kingly's data without your explicit action (such as opening a system Files picker).</p>
+        <h3>5.2 Backup behaviour</h3>
+        <p>By default, the Kingly Documents directory is included in iCloud and iTunes/Finder backups that you create. This means:</p>
+        <ul>
+          <li>If you back up your iPhone to iCloud or your Mac, your Kingly data is included in the backup, encrypted by Apple's backup mechanism.</li>
+          <li>If you do not back up your iPhone, the data is still on the device and recoverable by restoring the device from the same physical iPhone.</li>
+          <li>Reinstalling the Kingly app on the same device preserves your data.</li>
+          <li>Reinstalling the Kingly app on a different device requires you to first export a JSON snapshot from the original device and import it on the new one. <em>Kingly does not provide automatic device-to-device sync.</em></li>
+        </ul>
+        <h3>5.3 On-device encryption</h3>
+        <p>Data on a modern iPhone (with a passcode or Face ID enabled) is protected by iOS Data Protection, which uses hardware-backed AES encryption tied to the device's unique keys. Kingly does not introduce an additional layer of encryption but relies on iOS defaults.</p>
+      </section>
+
+      <section id="data-export">
+        <h2>6. Export and Deletion</h2>
+        <h3>6.1 Export</h3>
+        <p>You may export the entire Kingly data envelope at any time from <strong>Settings → Data → Export</strong>. The export is a single JSON file named with the current timestamp (e.g. <code>Kingly-Export-1696879231.json</code>). It contains every account, transaction, holding, budget and theme preference, and is yours to keep, parse, migrate or delete.</p>
+        <h3>6.2 Deletion</h3>
+        <p>You may delete all Kingly data from <strong>Settings → Data → Delete All Data</strong>. This requires explicit confirmation (including typing the word <code>DELETE</code>) and is irreversible. After deletion, the app returns to a clean first-run state.</p>
+        <p>Deleting the Kingly app from the home screen also removes all data. There is no "recover deleted data" mechanism because we have no copy of it.</p>
+      </section>
+
+      <section id="third-parties">
+        <h2>7. Third-Party Services</h2>
+        <p>Kingly does not use any third-party service that receives your data. The app contains zero network code for transmitting user data; the only network calls that may occur are:</p>
+        <ul>
+          <li>Apple App Store receipt validation, handled entirely by iOS and not visible to Kingly Labs.</li>
+          <li>Optional opt-in currency rate refresh (if and when enabled in a future version), which would query a public exchange-rate API without identifying you.</li>
+        </ul>
+        <p>We do not use third-party crash reporting, third-party analytics, third-party customer support chat, or third-party payment processors beyond Apple's App Store infrastructure.</p>
+      </section>
+
+      <section id="children">
+        <h2>8. Children's Privacy</h2>
+        <p>Kingly is intended for adult users managing their own personal finances. The app does not knowingly collect any data from children under 13 (or under any higher age of digital consent applicable in your jurisdiction). Because Kingly collects no data at all, no special procedures for children are required.</p>
+      </section>
+
+      <section id="changes">
+        <h2>9. Changes to This Policy</h2>
+        <p>If we change this Privacy Policy, we will:</p>
+        <ol>
+          <li>Update the "Last updated" date at the top of this page.</li>
+          <li>Describe the change in plain language in the <em>What changed</em> section below.</li>
+          <li>For material changes (e.g. the introduction of any new data collection), show an in-app notice the next time you open Kingly and require you to acknowledge it before continuing.</li>
+        </ol>
+        <h3>What changed</h3>
+        <ul>
+          <li><strong>October 10, 2026 — Initial publication.</strong> This is the first version of the Kingly Privacy Policy.</li>
+        </ul>
+      </section>
+
+      <section id="contact">
+        <h2>10. Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy or about how Kingly handles data, please contact us:</p>
+        <p>
+          <strong>Kingly Labs</strong><br />
+          Email: <a href="mailto:dhfu94086@gmail.com">dhfu94086@gmail.com</a><br />
+          Response time: typically within 1 business day<br />
+          Languages: English
+        </p>
+        <p>If you are a user in the European Economic Area, the United Kingdom, or California, please note that the data controller for Kingly is Kingly Labs. Because we collect no personal data, most rights under the GDPR, UK GDPR and CCPA apply to data that is stored only on your device — meaning you already have direct control over that data through the Kingly app itself and through your iPhone's settings.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© 2026 Kingly Labs. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="support.html">Support</a>
+        <a href="mailto:dhfu94086@gmail.com">dhfu94086@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
